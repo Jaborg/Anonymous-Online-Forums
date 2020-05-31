@@ -24,7 +24,10 @@ class Board:
         for x in range(board_length-1):
             current_thread = thread_ids[x]
             thread = brd.get_thread(current_thread)
-            for c in thread.replies:
-                comment = self.comment_clean_up(c.comment)
-                self.Comments.append((comment.encode('ascii','ignore')).decode("utf-8") )
+            try:
+                for c in thread.replies:
+                    comment = self.comment_clean_up(c.comment)
+                    self.Comments.append((comment.encode('ascii','ignore')).decode("utf-8") )
+            except:
+                continue
         return ' '.join(self.Comments).lower()

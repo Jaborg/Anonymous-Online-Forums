@@ -1,5 +1,7 @@
 import nltk
 from nltk.stem import WordNetLemmatizer
+from nltk.corpus import stopwords
+chachedWords = stopwords.words('english')
 
 
 
@@ -14,15 +16,5 @@ class Text_CUP:
 
     def lemmatizer(self,word_list):
         lemmatizer = WordNetLemmatizer()
-        lemmatized_output = ' '.join([lemmatizer.lemmatize(w) for w in word_list])
+        lemmatized_output = ' '.join([lemmatizer.lemmatize(w) for w in word_list if w.isalpha() and w not in chachedWords])
         return lemmatized_output
-
-
-wordstring = 'it was the best of times it was the worst of times '
-wordstring += 'it was the age of wisdom it was the age of foolishness'
-wordlist = wordstring.split()
-
-wordfreq = [wordlist.count(w) for w in wordlist] # a list comprehension
-
-wordfreq = str(list(zip(wordlist, wordfreq)))
-print(wordfreq)
