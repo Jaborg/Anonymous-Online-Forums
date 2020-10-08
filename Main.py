@@ -4,30 +4,44 @@ from nltk.corpus import stopwords
 import nltk
 chachedWords = stopwords.words('english')
 
-import html2text
-h = html2text.HTML2Text()
 
-import pandas as pd
+
+
 import matplotlib.pyplot as plt
-
 import FourChan
 import Text_CUP
 import WordFreq
+import Reddit_
 
 
 
 if __name__ == "__main__":
-    Board = FourChan.Board('pol')
-    length,ids,brd = Board.board_status()
-    comments = Board.comment_gather(length,ids,brd)
 
-    Clean = Text_CUP.Text_CUP(comments)
-    lemmatized = Clean.lemmatizer(Clean.tokenizer_())
+    bad_practice_variable = '4chan'
+    if bad_practice_variable == '4chan':
+        Board = FourChan.Board('pol')
 
+        Board.thread_data()
 
-    plt.figure(figsize=(20,5))
-    stopwords = set(STOPWORDS)
-    wordcloud = WordCloud(stopwords = stopwords,max_font_size=75,background_color="white").generate(lemmatized)
-    plt.imshow(wordcloud, interpolation='bilinear')
-    plt.axis("off")
-    plt.show()
+        # Clean = Text_CUP.Text_CUP(comments)
+        # lemmatized = Clean.lemmatizer(Clean.tokenizer_())
+        #
+        #
+        # plt.figure(figsize=(20,5))
+        # stopwords = set(STOPWORDS)
+        # wordcloud = WordCloud(stopwords = stopwords,max_font_size=75,background_color="white").generate(lemmatized)
+        # plt.imshow(wordcloud, interpolation='bilinear')
+        # plt.axis("off")
+        # plt.show()
+        # print(lemmatized)
+    #
+    # else:
+    #     ids = Reddit_.find_threads()
+    #     comments = Reddit_.gather_comments(ids)
+    #
+    #     plt.figure(figsize=(20,5))
+    #     stopwords = set(STOPWORDS)
+    #     wordcloud = WordCloud(stopwords = stopwords,max_font_size=75,background_color="white").generate(comments)
+    #     plt.imshow(wordcloud, interpolation='bilinear')
+    #     plt.axis("off")
+    #     plt.show()
