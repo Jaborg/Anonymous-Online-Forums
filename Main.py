@@ -21,7 +21,8 @@ if __name__ == "__main__":
     if bad_practice_variable == '4chan':
         Board = FourChan.Board('pol')
 
-        Board.thread_data()
+        x = Board.comment_data()
+        print(x)
 
         # Clean = Text_CUP.Text_CUP(comments)
         # lemmatized = Clean.lemmatizer(Clean.tokenizer_())

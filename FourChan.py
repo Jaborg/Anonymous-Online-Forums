@@ -8,10 +8,11 @@ h = html2text.HTML2Text()
 class Board:
 
     def __init__(self,Name):
-        self.Name = Name
-        self.Joined_Comments = []
-        self.Stored_Comments = []
-        self.brd = basc_py4chan.Board(self.Name)
+        self.name = Name
+        self.thread_list = []
+        self.joined_Comments = []
+        self.stored_Comments = []
+        self.brd = basc_py4chan.Board(self.name)
         self.thread_ids = self.brd.get_all_thread_ids()
         self.board_length = len(self.thread_ids)
 
@@ -28,12 +29,13 @@ class Board:
                 continue
             else:
                 topic = thread.topic
-                x  = [topic.post_number,self.comment_clean_up(topic.comment),topic.subject,str(len(thread.replies)),topic.datetime]
-                print(x)
-                print('/n')
-        return
+                self.thread_list.append([self.brd,topic.post_number,self.comment_clean_up(topic.comment),topic.subject,str(len(thread.replies)),topic.datetime])
+
+
+        return self.thread_list
 
     def comment_data(self):
+            comment_list = []
             for x in range(self.board_length - 1):
                 current_thread = self.thread_ids[x]
                 thread = self.brd.get_thread(current_thread)
@@ -42,11 +44,13 @@ class Board:
                     continue
                 else:
                     topic = thread.topic
+                    print(basc_py4chan.Post(thread))
                     try:
                         for c in thread.replies:
                             #print((c.datetime,c.comment))
                             comment = self.comment_clean_up(c.comment)
-                            print(c.datetime)
+                            d_comments = [self.comment_clean_up(),topic.post_number]
+                            print(d_comments)
                             self.Joined_Comments.append((comment))
                     except:
                         print(sys.exc_info())
