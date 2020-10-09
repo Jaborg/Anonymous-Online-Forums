@@ -6,11 +6,11 @@ from praw.models import MoreComments
 
 
 
-reddit = praw.Reddit(client_id = 'vDfkx-DyLlgD_A', #  The API link
-                     client_secret = 'ejSVE3RhbhkSNxV6s0NukXphH5M',
-                     username = 'nebuch_babl95',
-                     password = 'Chelsea95',
-                     user_agent = 'political_quoter')
+reddit = praw.Reddit(client_id = '', #  The API link
+                     client_secret = '',
+                     username = '',
+                     password = '',
+                     user_agent = '')
 
 
 
