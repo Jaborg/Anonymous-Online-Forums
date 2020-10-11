@@ -1,5 +1,5 @@
 
-from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
+
 from nltk.corpus import stopwords
 import nltk
 chachedWords = stopwords.words('english')
@@ -21,8 +21,10 @@ if __name__ == "__main__":
     if bad_practice_variable == '4chan':
         Board = FourChan.Board('pol')
 
-        x = Board.comment_data()
-        print(x)
+        x,y = Board.thread_data()
+        
+
+
 
         # Clean = Text_CUP.Text_CUP(comments)
         # lemmatized = Clean.lemmatizer(Clean.tokenizer_())

@@ -19,9 +19,9 @@ cursor = cnx.cursor()
 tomorrow = datetime.datetime.now().date() + datetime.timedelta(days=1)
 print('lol')
 #
-# add_employee = ("INSERT INTO employees "
-#                "(first_name, last_name, hire_date, gender, birth_date) "
-#                "VALUES (%s, %s, %s, %s, %s)")
+add_thread = ("INSERT INTO threads "
+                "(board_name, thread_number, thread_comment, subject, No_of_replies),"
+                "VALUES (%s, %s, %s, %s, %s)")
 # add_salary = ("INSERT INTO salaries "
 #               "(emp_no, salary, from_date, to_date) "
 #               "VALUES (%(emp_no)s, %(salary)s, %(from_date)s, %(to_date)s)")
