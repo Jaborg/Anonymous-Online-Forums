@@ -22,7 +22,7 @@ if __name__ == "__main__":
         Board = FourChan.Board('pol')
 
         x,y = Board.thread_data()
-        
+
 
 
 

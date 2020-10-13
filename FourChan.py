@@ -20,7 +20,7 @@ class Board:
         return (h.handle(comment).replace('\n', ' ').encode('ascii','ignore').decode("utf-8"))
 
     def thread_data(self):
-        for x in range(3):
+        for x in range(6):
             current_thread = self.thread_ids[x]
             thread = self.brd.get_thread(current_thread)
             sticky = thread.sticky
@@ -28,13 +28,13 @@ class Board:
                 continue
             else:
                 topic = thread.topic
-                self.thread_list.append([self.brd,topic.post_number,self.comment_clean_up(topic.comment),
-                                            topic.subject,str(len(thread.replies)),topic.datetime])
+                self.thread_list.append((str(self.brd),topic.post_number,self.comment_clean_up(topic.comment),
+                                            topic.subject,str(len(thread.replies)),topic.datetime))
                 try:
                     for c in thread.all_posts:
                         comment = self.comment_clean_up(c.comment)
-                        self.post_list.append([c.post_id,c.poster_id,c.is_op,topic.post_number,self.comment_clean_up(c.text_comment)
-                                                ,c.datetime,c.file_url,c.thumbnail_fname])
+                        self.post_list.append((c.post_id,c.poster_id,c.is_op,topic.post_number,self.comment_clean_up(c.text_comment)
+                                                ,c.datetime,c.file_url,c.thumbnail_fname))
                 except:
                     print(sys.exc_info())
                     continue
