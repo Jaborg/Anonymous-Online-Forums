@@ -18,7 +18,7 @@ Board = FourChan.Board('pol')
 
 x,y = Board.thread_data()
 
-cnx = mysql.connector.connect(user='root', password='Baghdad1258',
+cnx = mysql.connector.connect(user='root', password='',
                               host='127.0.0.1',
                               database='forums_test',auth_plugin='caching_sha2_password')
 cursor = cnx.cursor()
