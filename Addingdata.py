@@ -58,6 +58,6 @@ def insert_data(thread_list,comment_list):
 
 insert_data(x,y)
 cnx.commit()
-
+#
 cursor.close()
 cnx.close()
