@@ -12,73 +12,51 @@ password = os.environ.get("MYSQL_PASSWORD", None)
 # host = "localhost"
 # database = "forums_test"
 
-print(user)
-print(password)
+
 
 Board = FourChan.Board('pol')
 
 x,y = Board.thread_data()
 
-cnx = mysql.connector.connect(user=user, password=password,
+cnx = mysql.connector.connect(user='root', password='Baghdad1258',
                               host='127.0.0.1',
                               database='forums_test',auth_plugin='caching_sha2_password')
 cursor = cnx.cursor()
 
 
-tomorrow = datetime.datetime.now().date() + datetime.timedelta(days=1)
 
 #
-add_thread = ("INSERT INTO thread "
+add_thread = ("INSERT INTO thread   "
                 "(board_name, thread_number, thread_comment, subject, No_of_replies,Date)"
-                "VALUES (%s, %s, %s, %s, %s,%s)")
+                "VALUES (%s, %s, %s, %s, %s,%s) "
+                "ON DUPLICATE KEY UPDATE No_of_replies = VALUES(No_of_replies) ")
 
-
-
-
-#
-# delete_employee = ("DELETE FROM employee WHERE first_name = %s AND last_name = %s")
-#
-threads = ('pol', 2230303, 'Really this', 'hello', 21 ,datetime.date(1977, 6, 14))
-
-
+add_comment = ("INSERT INTO comments   "
+                "(post_id, poster_id, is_op, thread_number, comment,date,file_url,thumbnail)"
+                "VALUES (%s, %s, %s, %s, %s,%s,%s,%s) ")
 
 
 def insert_thread(thread_list):
      for thread in thread_list:
-        print(thread)
         cursor.execute(add_thread, thread)
-
 
      return
 
-insert_thread(x)
 
-#cursor.execute(add_thread, thread)
+def insert_comments(comment_list):
+    for comment in comment_list:
+        cursor.execute(add_comment,comment)
+
+    return
 
 
-# ('Jacob', 'Lappin', tomorrow, 'M', datetime.date(1978, 2, 8))]
-#
-# # Insert new employee
-# def insert_employees(employee_info):
-#     for employee in employee_info:
-#         cursor.execute(add_employee, employee)
-#
-#
-#     return
-#
-# def delete_table_info(table):
-#     cursor.execute("TRUNCATE TABLE {}".format(table))
-#     return
-#
-# insert_employees(data_employee)
+def insert_data(thread_list,comment_list):
+    insert_thread(thread_list)
+    insert_comments(comment_list)
+    print(f'Succesful insertion of latest 4chan ; {Board}')
+    return
 
-#cursor.execute(add_employee, data_employee)
-
-# Insert salary information
-
-#cursor.execute(add_salary, data_salary)
-
-# Make sure data is committed to the database
+insert_data(x,y)
 cnx.commit()
 
 cursor.close()

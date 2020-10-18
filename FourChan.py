@@ -20,22 +20,24 @@ class Board:
         return (h.handle(comment).replace('\n', ' ').encode('ascii','ignore').decode("utf-8"))
 
     def thread_data(self):
-        for x in range(6):
+        for x in range( self.board_length - 1):
             current_thread = self.thread_ids[x]
             thread = self.brd.get_thread(current_thread)
-            sticky = thread.sticky
-            if sticky == True:
-                continue
-            else:
-                topic = thread.topic
-                self.thread_list.append((str(self.brd),topic.post_number,self.comment_clean_up(topic.comment),
-                                            topic.subject,str(len(thread.replies)),topic.datetime))
-                try:
+            try:
+                sticky = thread.sticky
+                if sticky == True:
+                    continue
+                else:
+                    topic = thread.topic
+                    self.thread_list.append((str(self.brd),topic.post_number,self.comment_clean_up(topic.comment),
+                                                topic.subject,str(len(thread.replies)),topic.datetime))
+
                     for c in thread.all_posts:
-                        comment = self.comment_clean_up(c.comment)
-                        self.post_list.append((c.post_id,c.poster_id,c.is_op,topic.post_number,self.comment_clean_up(c.text_comment)
-                                                ,c.datetime,c.file_url,c.thumbnail_fname))
-                except:
+                            comment = self.comment_clean_up(c.comment)
+                            self.post_list.append((c.post_id,c.poster_id,c.is_op,topic.post_number,self.comment_clean_up(c.text_comment)
+                                                    ,c.datetime,c.file_url,c.thumbnail_fname))
+            except Exception as e:
+                    print(e)
                     print(sys.exc_info())
                     continue
 
