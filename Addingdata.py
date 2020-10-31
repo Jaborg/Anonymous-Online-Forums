@@ -5,7 +5,7 @@ import datetime
 
 
 import mysql.connector
-
+def
 user = os.environ.get("MYSQL_USER", None)
 password = os.environ.get("MYSQL_PASSWORD", None)
 # host = "localhost"
