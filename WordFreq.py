@@ -1,5 +1,4 @@
 from collections import Counter
-import numpy as np
 from nltk import word_tokenize
 from sklearn.feature_extraction.text import CountVectorizer
 import pandas as pd
