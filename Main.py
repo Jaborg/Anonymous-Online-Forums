@@ -14,8 +14,12 @@ if __name__ == "__main__":
     if bad_practice_variable == '4chan':
         Board = FourChan.Board('pol')
 
-        x,y = Board.thread_data()
+        thread_list,comment_list = Board.thread_data()
 
-        Addingdata.initiate()
-        Addingdata.insert_data(x,y)
-        Addingdata.close_connection()
+
+
+        SQL_connection = Addingdata.SQL_connection()
+
+
+        SQL_connection.insert_data(thread_list,comment_list)
+        SQL_connection.close_connection()
